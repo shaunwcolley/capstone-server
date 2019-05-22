@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "apollo-datasource": "^0.4.0",
     "apollo-server": "^2.5.0",
     "chrome-launcher": "^0.10.7",
     "cors": "^2.8.5",
