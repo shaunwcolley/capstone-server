@@ -2,7 +2,8 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type User {
-    userName: String
+    id: Int
+    username: String
     password: String
   }
 
@@ -30,7 +31,25 @@ const typeDefs = gql`
   }
 
   type Query {
-    user: User
+    stats: [Stat]
+    users: [User]
+  }
+
+  type Mutation {
+    createUser(username: String, password:String): User,
+    createStat(
+    websiteId: Int
+    performance: Float
+    accessibility: Float
+    bestPractices: Float
+    seo: Float
+    timeFetch: String
+    timeToFirstByte: String
+    firstContentfulPaint: String
+    firstMeaningfulPaint: String
+    speedIndex: String
+    timeToInteractive: String
+    estimatedInputLatency: String): Stat,
   }
 `;
 
