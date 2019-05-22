@@ -33,6 +33,7 @@ const typeDefs = gql`
   type Query {
     stats: [Stat]
     users: [User]
+    website(url: String): Website 
   }
 
   type Mutation {

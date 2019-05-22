@@ -2,13 +2,15 @@ const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./data/schema.js');
 const resolvers = require('./data/resolvers.js');
 const db = require('./models');
+const opts = require('./utils/opts')
+const launchChromeAndRunLighthouse = require('./utils/lighthouseFetch')
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: { db },
 });
-
+launchChromeAndRunLighthouse("https://www.google.com", opts)
 const PORT = process.env.PORT || 8080;
 
 server.listen(PORT).then(({ url }) => {

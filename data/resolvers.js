@@ -1,7 +1,8 @@
 const resolvers = {
   Query: {
-    users: (parent, args, { db }) => db.user.findAll(),
-    stats: (parent, args, { db }) => db.stat.findAll(),
+    users: (parent, args, { db }) => db.User.findAll(),
+    stats: (parent, args, { db }) => db.Stat.findAll(),
+    website: (parent, { url }, { db }) => db.Website.findOne({ where: { url } }),
   },
   Mutation: {
     createUser: (parent, { username, password }, { db }) => db.User.create({

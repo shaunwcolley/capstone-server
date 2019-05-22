@@ -9,5 +9,5 @@ class StatAPI extends DataSource {
     this.context = config.context;
   }
   async findOrCreateStat({ })
-  
+
 }

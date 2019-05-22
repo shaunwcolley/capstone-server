@@ -1,6 +1,7 @@
+const db = require('../models');
 
 const postLighthouseResult = (result) => {
-
+  result.
   db.Stat.create({
     website_id: websiteId,
     performance,
