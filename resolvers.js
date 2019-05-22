@@ -1,6 +1,8 @@
 const resolvers = {
   Query: {
-    hello: () => 'world',
+    user(parent, args) {
+      return null;
+    },
   },
 };
 
