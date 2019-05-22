@@ -13,6 +13,7 @@
     "express-graphql": "^0.8.0",
     "graphql": "^14.3.0",
     "lighthouse": "^5.0.0",
+    "pg": "^7.11.0",
     "sequelize": "^5.8.6"
   },
   "devDependencies": {
