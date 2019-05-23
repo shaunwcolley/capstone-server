@@ -1,23 +1,25 @@
 const { ApolloServer } = require('apollo-server');
+const opts = require('./utils/opts');
+const launchChromeAndRunLighthouse = require('./utils/lighthouseFetch');
+const db = require('./models');
 const typeDefs = require('./data/schema.js');
 const resolvers = require('./data/resolvers.js');
-const db = require('./models');
-const opts = require('./utils/opts')
-const launchChromeAndRunLighthouse = require('./utils/lighthouseFetch')
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: { db },
 });
-launchChromeAndRunLighthouse("https://www.google.com", opts)
+
+
+launchChromeAndRunLighthouse('https://www.google.com', opts).then(() => null);
 const PORT = process.env.PORT || 8080;
 
 server.listen(PORT).then(({ url }) => {
   console.log(`Server is ready at ${url}`);
 });
 
- /* # Write your query or mutation here
+/* # Write your query or mutation here
 mutation CreateStat($websiteId: Int,
       $performance: Float,
       $accessibility: Float,

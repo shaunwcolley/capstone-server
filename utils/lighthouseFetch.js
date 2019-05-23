@@ -1,7 +1,7 @@
 const lighthouse = require('lighthouse');
 const chromeLauncher = require('chrome-launcher');
-// const postResult = require('./postLighthouseResult');
-const websiteFetch = require('./websiteFetch');
+const postResult = require('./postLighthouseResult');
+const db = require('../models');
 
 function launchChromeAndRunLighthouse(url, opts, config = null) {
   return chromeLauncher.launch({ chromeFlags: opts.chromeFlags })
@@ -9,10 +9,11 @@ function launchChromeAndRunLighthouse(url, opts, config = null) {
       opts.port = chrome.port;
       return lighthouse(url, opts, config)
         .then(result => chrome.kill()
-          .then(() => websiteFetch(url))
-          .then((url) => console.log(url)
-          // postResult(result, id)
-          ));
+          .then(() => db.Website.findOne({ where: { url } })
+            .then((website) => {
+              const { id } = website;
+              postResult(result, id);
+            })));
     });
 }
 
