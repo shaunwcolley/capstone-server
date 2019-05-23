@@ -11,8 +11,17 @@ const server = new ApolloServer({
   context: { db },
 });
 
+async function processWebsites(array) {
+ for(const item of array) {
+   const { id, url } = item;
+   await launchChromeAndRunLighthouse(url, opts, null, id)
+ }
+}
+db.Website.findAll()
+.then((websites) => {
+  processWebsites(websites)
+});
 
-launchChromeAndRunLighthouse('https://www.google.com', opts).then(() => null);
 const PORT = process.env.PORT || 8080;
 
 server.listen(PORT).then(({ url }) => {
