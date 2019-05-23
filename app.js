@@ -17,10 +17,10 @@ async function processWebsites(array) {
     await launchChromeAndRunLighthouse(url, opts, null, id)
  }
 }
-db.Website.findAll()
-  .then((websites) => {
-    processWebsites(websites);
-  });
+// db.Website.findAll()
+//   .then((websites) => {
+//     processWebsites(websites);
+//   });
 
 const PORT = process.env.PORT || 8080;
 

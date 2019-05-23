@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const Stat = sequelize.define('Stat', {
     website_id: DataTypes.INTEGER,
@@ -12,10 +13,13 @@ module.exports = (sequelize, DataTypes) => {
     first_meaningful_paint: DataTypes.STRING,
     speed_index: DataTypes.STRING,
     time_to_interactive: DataTypes.STRING,
-    estimated_input_latency: DataTypes.STRING
+    estimated_input_latency: DataTypes.STRING,
   }, {});
-  Stat.associate = function(models) {
-    // associations can be defined here
+  Stat.associate = (models) => {
+    Stat.belongsTo(models.Website, {
+      as: 'website',
+      foreignKey: 'website_id',
+    });
   };
   return Stat;
 };
