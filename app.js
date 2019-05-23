@@ -14,13 +14,13 @@ const server = new ApolloServer({
 async function processWebsites(array) {
  for(const item of array) {
    const { id, url } = item;
-   await launchChromeAndRunLighthouse(url, opts, null, id)
+    await launchChromeAndRunLighthouse(url, opts, null, id)
  }
 }
 db.Website.findAll()
-.then((websites) => {
-  processWebsites(websites)
-});
+  .then((websites) => {
+    processWebsites(websites);
+  });
 
 const PORT = process.env.PORT || 8080;
 
