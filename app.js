@@ -1,7 +1,9 @@
 const { ApolloServer } = require('apollo-server');
+const opts = require('./utils/opts');
+const launchChromeAndRunLighthouse = require('./utils/lighthouseFetch');
+const db = require('./models');
 const typeDefs = require('./data/schema.js');
 const resolvers = require('./data/resolvers.js');
-const db = require('./models');
 
 const server = new ApolloServer({
   typeDefs,
@@ -9,13 +11,24 @@ const server = new ApolloServer({
   context: { db },
 });
 
+async function processWebsites(array) {
+ for(const item of array) {
+   const { id, url } = item;
+    await launchChromeAndRunLighthouse(url, opts, null, id)
+ }
+}
+db.Website.findAll()
+  .then((websites) => {
+    processWebsites(websites);
+  });
+
 const PORT = process.env.PORT || 8080;
 
 server.listen(PORT).then(({ url }) => {
   console.log(`Server is ready at ${url}`);
 });
 
- /* # Write your query or mutation here
+/* # Write your query or mutation here
 mutation CreateStat($websiteId: Int,
       $performance: Float,
       $accessibility: Float,
