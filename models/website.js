@@ -5,8 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     url: DataTypes.STRING
   }, {});
-  Website.associate = function(models) {
-    // associations can be defined here
+  Website.associate = (models) => {
+    Website.hasMany(models.Stat, {
+      as: 'stats',
+      foreignKey: 'website_id',
+    });
   };
   return Website;
 };

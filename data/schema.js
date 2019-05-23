@@ -16,35 +16,37 @@ const typeDefs = gql`
 
   type Stat {
     id: Int
-    websiteId: Int
+    website_id: Int
     performance: Float
     accessibility: Float
-    bestPractices: Float
+    best_practices: Float
     seo: Float
-    timeFetch: String
+    time_fetch: String
     timeToFirstByte: String
     firstContentfulPaint: String
     firstMeaningfulPaint: String
     speedIndex: String
     timeToInteractive: String
     estimatedInputLatency: String
+    website: Website
   }
 
   type Query {
     stats: [Stat]
     users: [User]
+    websites: [Website]
     getWebsite(url: String): Website
   }
 
   type Mutation {
     createUser(username: String, password:String): User,
     createStat(
-    websiteId: Int
+    website_id: Int
     performance: Float
     accessibility: Float
-    bestPractices: Float
+    best_practices: Float
     seo: Float
-    timeFetch: String
+    time_fetch: String
     timeToFirstByte: String
     firstContentfulPaint: String
     firstMeaningfulPaint: String

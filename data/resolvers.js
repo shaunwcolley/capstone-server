@@ -1,7 +1,8 @@
 const resolvers = {
   Query: {
     users: (parent, args, { db }) => db.User.findAll(),
-    stats: (parent, args, { db }) => db.Stat.findAll(),
+    stats: (parent, args, { db }) => db.Stat.findAll({ include: [{ model: db.Website, as: 'website' }] }),
+    websites: (parent, args, { db }) => db.Website.findAll(),
     getWebsite: (parent, { url }, { db }) => db.Website.findOne({ where: { url } }),
   },
   Mutation: {
