@@ -1,12 +1,15 @@
 const { ApolloServer } = require('apollo-server');
+const cors = require('cors');
 const opts = require('./utils/opts');
 const launchChromeAndRunLighthouse = require('./utils/lighthouseFetch');
 const db = require('./models');
 const typeDefs = require('./data/schema.js');
 const resolvers = require('./data/resolvers.js');
 
+
 const server = new ApolloServer({
   typeDefs,
+  cors: false,
   resolvers,
   context: { db },
 });
