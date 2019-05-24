@@ -28,6 +28,9 @@ const typeDefs = gql`
     speedIndex: String
     timeToInteractive: String
     estimatedInputLatency: String
+    method: String
+    error_code: String
+    error_message: String
     website: Website
   }
 

@@ -1,6 +1,6 @@
 const db = require('../models');
 
-const postLighthouseResult = async (result, websiteId) => {
+const postLighthouseResult = async (result, websiteId, method) => {
   const {
     lhr:
     {
@@ -21,19 +21,9 @@ const postLighthouseResult = async (result, websiteId) => {
       },
     },
   } = result;
-  // console.log(`bestPractices score: ${bestPractices}`);
-  // console.log(`performance score: ${performance}`);
-  // console.log(`accessibility score: ${accessibility}`);
-  // console.log(`seo score: ${seo}`);
-  // console.log(`fetchTime score: ${fetchTime}`);
-  // console.log(`firstMeaningfulPaint score: ${firstMeaningfulPaint}`);
-  // console.log(`firstContentfulPaint score: ${firstContentfulPaint}`);
-  // console.log(`timeToFirstByte score: ${timeToFirstByte}`);
-  // console.log(`speedIndex score: ${speedIndex}`);
-  // console.log(`interactive score: ${interactive}`);
-  // console.log(`estimatedInputLatency score: ${estimatedInputLatency}`);
-  // console.log(`websiteId : ${websiteId}`);
+
   await db.Stat.create({
+    method,
     website_id: websiteId,
     performance,
     accessibility,

@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     speed_index: DataTypes.STRING,
     time_to_interactive: DataTypes.STRING,
     estimated_input_latency: DataTypes.STRING,
+    method: DataTypes.STRING,
+    error_code: DataTypes.STRING,
+    error_message: DataTypes.STRING,
   }, {});
   Stat.associate = (models) => {
     Stat.belongsTo(models.Website, {
