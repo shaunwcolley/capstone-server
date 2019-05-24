@@ -10,6 +10,10 @@ const resolvers = {
       username,
       password,
     }),
+    createWebsite: (parent, { name, url }, { db }) => db.Website.create({
+      name,
+      url,
+    }),
     createStat: (parent, {
       websiteId,
       performance,

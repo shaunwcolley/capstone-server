@@ -42,7 +42,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createUser(username: String, password:String): User,
+    createUser(username: String, password:String): User
+    createWebsite(name: String, url:String): Website
     createStat(
     website_id: Int
     performance: Float
@@ -55,7 +56,7 @@ const typeDefs = gql`
     firstMeaningfulPaint: String
     speedIndex: String
     timeToInteractive: String
-    estimatedInputLatency: String): Stat,
+    estimatedInputLatency: String): Stat
   }
 `;
 
