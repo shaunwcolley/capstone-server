@@ -8,12 +8,15 @@ const typeDefs = require('./data/schema');
 const resolvers = require('./data/resolvers');
 const desktopConfig = require('./utils/lr-desktop-config');
 const mobileConfig = require('./utils/lr-mobile-config');
+const express = require('express');
 
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: { db },
+  introspection: true,
+  playground: true,
 });
 
 async function processWebsites(array) {
