@@ -34,19 +34,20 @@ async function processWebsites(array) {
 //   .then((websites) => {
 //     processWebsites(websites);
 //   });
-// const testWebsites = [{ id: 1, url: 'https://www.google.com' }];
-//
-// const rule = new schedule.RecurrenceRule();
-// rule.second = 1;
-//
-// let count = 0;
-// const job = schedule.scheduleJob(rule, async () => {
-//   await processWebsites(testWebsites);
-//   count += 1;
-//   console.log(`minute ${count}`);
-// });
-//
-// job.schedule(new Date(Date.now() + 5000));
+
+const testWebsites = [{ id: 1, url: 'https://www.google.com' }];
+
+const rule = new schedule.RecurrenceRule();
+rule.second = 1;
+
+let count = 0;
+const job = schedule.scheduleJob(rule, async () => {
+  await processWebsites(testWebsites);
+  count += 1;
+  console.log(`minute ${count}`);
+});
+
+job.schedule(new Date(Date.now() + 5000));
 
 const PORT = process.env.PORT || 8080;
 
