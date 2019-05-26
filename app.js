@@ -1,6 +1,8 @@
-const { ApolloServer } = require('apollo-server');
+const { ApolloServer } = require('apollo-server-express');
 // const cors = require('cors');
 const schedule = require('node-schedule');
+const express = require('express');
+
 const opts = require('./utils/opts');
 const launchChromeAndRunLighthouse = require('./utils/lighthouseFetch');
 const db = require('./models');
@@ -8,8 +10,8 @@ const typeDefs = require('./data/schema');
 const resolvers = require('./data/resolvers');
 const desktopConfig = require('./utils/lr-desktop-config');
 const mobileConfig = require('./utils/lr-mobile-config');
-const express = require('express');
 
+const app = express();
 
 const server = new ApolloServer({
   typeDefs,
@@ -18,6 +20,8 @@ const server = new ApolloServer({
   introspection: true,
   playground: true,
 });
+
+server.applyMiddleware({ app });
 
 async function processWebsites(array) {
  for(const item of array) {
@@ -46,6 +50,10 @@ job.schedule(new Date(Date.now() + 5000));
 
 const PORT = process.env.PORT || 8080;
 
-server.listen(PORT).then(({ url }) => {
-  console.log(`Server is ready at ${url}`);
+app.get('/', (req, res) => {
+  res.send('hello');
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is ready at ${PORT}`);
 });
