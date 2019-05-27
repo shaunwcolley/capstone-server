@@ -33,7 +33,7 @@ async function processWebsites(array) {
 //     processWebsites(websites);
 //   });
 
-const testWebsites = [{ id: 1, url: 'https://www.google.com' }];
+const testWebsites = [{ id: 25, url: 'https://www.digitalcrafts.com' }];
 
 const rule = new schedule.RecurrenceRule();
 rule.second = 1;
@@ -46,6 +46,8 @@ let count = 0;
 // });
 
 // job.schedule(new Date(Date.now() + 5000));
+
+processWebsites(testWebsites)
 
 const PORT = process.env.PORT || 8080;
 
