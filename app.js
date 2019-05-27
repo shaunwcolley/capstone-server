@@ -30,10 +30,12 @@ async function processWebsites(array) {
     await launchChromeAndRunLighthouse(url, opts, mobileConfig, id);
  }
 }
+
 // db.Website.findAll()
 //   .then((websites) => {
 //     processWebsites(websites);
 //   });
+
 const testWebsites = [{ id: 1, url: 'https://www.google.com' }];
 
 const rule = new schedule.RecurrenceRule();
