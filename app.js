@@ -35,7 +35,7 @@ async function processWebsites(array) {
 
 const testWebsites = [{ id: 1, url: 'https://www.google.com' }];
 
-const job = schedule.scheduleJob({ hour: 15, minute: 30, dayOfWeek: 0 }, async () => {
+const job = schedule.scheduleJob({ hour: 14, minute: 5, dayOfWeek: 1 }, async () => {
   await processWebsites(testWebsites).catch(error => console.log(error));
   console.log('process fired.');
 });
