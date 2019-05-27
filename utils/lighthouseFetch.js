@@ -1,7 +1,6 @@
 const lighthouse = require('lighthouse');
 const chromeLauncher = require('chrome-launcher');
 const postResult = require('./postLighthouseResult');
-const db = require('../models');
 
 function launchChromeAndRunLighthouse(url, opts, config, websiteId) {
   return chromeLauncher.launch({ chromeFlags: opts.chromeFlags })
@@ -16,9 +15,9 @@ function launchChromeAndRunLighthouse(url, opts, config, websiteId) {
             } else {
               method = 'mobile';
             }
-            await postResult(result, websiteId, method).catch(error => console.log(error));
-          });
-        });
+            await postResult(result, websiteId, method).catch(error => console.log(`Error in posting result to db; error log: ${error}`));
+          }).catch(error => console.log(`Error in closing chrome; error log: ${error}`));
+        }).catch(error => console.log(`Error in running lighthouse api; error log: ${error}`));
     });
 }
 
