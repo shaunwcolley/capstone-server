@@ -10,13 +10,13 @@ function launchChromeAndRunLighthouse(url, opts, config, websiteId) {
       return lighthouse(url, opts, config)
         .then(async (result) => {
           await chrome.kill().then(async () => {
-            let method = ''
+            let method = '';
             if (config.settings.emulatedFormFactor === 'desktop') {
               method = 'desktop';
             } else {
               method = 'mobile';
             }
-            await postResult(result, websiteId, method);
+            await postResult(result, websiteId, method).catch(error => console.log(error));
           });
         });
     });
