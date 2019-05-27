@@ -42,11 +42,11 @@ const rule = new schedule.RecurrenceRule();
 rule.second = 1;
 
 let count = 0;
-const job = schedule.scheduleJob(rule, async () => {
-  await processWebsites(testWebsites).catch(error => console.log(error))
-  count += 1;
-  console.log(`minute ${count}`);
-});
+// const job = schedule.scheduleJob(rule, async () => {
+//   await processWebsites(testWebsites).catch(error => console.log(error))
+//   count += 1;
+//   console.log(`minute ${count}`);
+// });
 
 // job.schedule(new Date(Date.now() + 5000));
 
