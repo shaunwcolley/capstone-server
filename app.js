@@ -11,7 +11,6 @@ const desktopConfig = require('./utils/lr-desktop-config');
 const mobileConfig = require('./utils/lr-mobile-config');
 
 
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -28,16 +27,12 @@ async function processWebsites(array) {
  }
 }
 
-// db.Website.findAll()
-//   .then((websites) => {
-//     processWebsites(websites);
-//   });
-
-const testWebsites = [{ id: 1, url: 'https://www.google.com' }];
-
-const job = schedule.scheduleJob({ hour: 15, minute: 7, dayOfWeek: 1 }, async () => {
-  await processWebsites(testWebsites).catch(error => console.log(error));
-  console.log('process fired.');
+const job = schedule.scheduleJob({ hour: 17, minute: 0, dayOfWeek: 1 }, async () => {
+  db.Website.findAll()
+    .then((websites) => {
+      processWebsites(websites).catch(error => console.log(error));
+    });
+  console.log('LH process was fired, logging websites to db.');
 });
 
 job.schedule();
