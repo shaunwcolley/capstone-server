@@ -48,7 +48,7 @@ const job = schedule.scheduleJob(rule, async () => {
   console.log(`minute ${count}`);
 });
 
-job.schedule(new Date(Date.now() + 5000));
+// job.schedule(new Date(Date.now() + 5000));
 
 const PORT = process.env.PORT || 8080;
 
