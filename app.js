@@ -27,15 +27,15 @@ async function processWebsites(array) {
  }
 }
 
-const job = schedule.scheduleJob({ hour: 17, minute: 0, dayOfWeek: 1 }, async () => {
-  db.Website.findAll()
-    .then((websites) => {
-      processWebsites(websites).catch(error => console.log(error));
-    });
-  console.log('LH process was fired, logging websites to db.');
-});
-
-job.schedule();
+// const job = schedule.scheduleJob({ hour: 17, minute: 0, dayOfWeek: 1 }, async () => {
+//   db.Website.findAll()
+//     .then((websites) => {
+//       processWebsites(websites).catch(error => console.log(error));
+//     });
+//   console.log('LH process was fired, logging websites to db.');
+// });
+//
+// job.schedule();
 
 // processWebsites(testWebsites);
 
