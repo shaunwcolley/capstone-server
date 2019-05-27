@@ -43,7 +43,7 @@ rule.second = 1;
 
 let count = 0;
 const job = schedule.scheduleJob(rule, async () => {
-  await processWebsites(testWebsites);
+  await processWebsites(testWebsites).catch(error => console.log(error))
   count += 1;
   console.log(`minute ${count}`);
 });
