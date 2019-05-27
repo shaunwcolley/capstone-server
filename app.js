@@ -35,19 +35,14 @@ async function processWebsites(array) {
 
 const testWebsites = [{ id: 1, url: 'https://www.google.com' }];
 
-const rule = new schedule.RecurrenceRule();
-rule.second = 1;
+const job = schedule.scheduleJob({ hour: 15, minute: 30, dayOfWeek: 0 }, async () => {
+  await processWebsites(testWebsites).catch(error => console.log(error));
+  console.log('process fired.');
+});
 
-let count = 0;
-// const job = schedule.scheduleJob(rule, async () => {
-//   await processWebsites(testWebsites).catch(error => console.log(error))
-//   count += 1;
-//   console.log(`minute ${count}`);
-// });
+job.schedule();
 
-// job.schedule(new Date(Date.now() + 5000));
-
-//processWebsites(testWebsites)
+// processWebsites(testWebsites);
 
 const PORT = process.env.PORT || 8080;
 
