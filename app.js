@@ -47,7 +47,7 @@ let count = 0;
 
 // job.schedule(new Date(Date.now() + 5000));
 
-processWebsites(testWebsites)
+//processWebsites(testWebsites)
 
 const PORT = process.env.PORT || 8080;
 
