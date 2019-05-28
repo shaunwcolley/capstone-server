@@ -16,7 +16,8 @@ function checkMethod(config) {
 function launchChromeAndRunLighthouse(url, opts, config, websiteId) {
   return chromeLauncher.launch({ chromeFlags: opts.chromeFlags })
     .then((chrome) => {
-      const method = checkMethod(config.settings.emulatedFormFactor);
+      const method = null;
+      // const method = checkMethod(config.settings.emulatedFormFactor);
       opts.port = chrome.port;
       return lighthouse(url, opts, config)
         .then(async (result) => {
