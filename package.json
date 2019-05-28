@@ -18,6 +18,8 @@
     "lighthouse": "^5.0.0",
     "mysql2": "^1.6.5",
     "node-schedule": "^1.3.2",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^2.0.0",
     "pg": "^7.11.0",
     "sequelize": "^5.8.6"
   },
