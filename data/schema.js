@@ -57,6 +57,7 @@ const typeDefs = gql`
     speedIndex: String
     timeToInteractive: String
     estimatedInputLatency: String): Stat
+    runLighthouse(name: String): Website
   }
 `;
 
