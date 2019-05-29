@@ -46,7 +46,6 @@ const typeDefs = gql`
     stats: [Stat]
     users: [User]
     websites: [Website]
-    getWebsite(url: String): Website
   }
 
   type Mutation {
