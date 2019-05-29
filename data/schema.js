@@ -34,6 +34,14 @@ const typeDefs = gql`
     website: Website
   }
 
+  type LoginResponse {
+    success: Boolean
+    message: String
+    error: String
+    token: String
+    userId: Int
+  }
+
   type Query {
     stats: [Stat]
     users: [User]
@@ -44,20 +52,9 @@ const typeDefs = gql`
   type Mutation {
     createUser(username: String, password:String): User
     createWebsite(name: String, url:String): Website
-    createStat(
-    website_id: Int
-    performance: Float
-    accessibility: Float
-    best_practices: Float
-    seo: Float
-    time_fetch: String
-    timeToFirstByte: String
-    firstContentfulPaint: String
-    firstMeaningfulPaint: String
-    speedIndex: String
-    timeToInteractive: String
-    estimatedInputLatency: String): Stat
     runLighthouse(name: String): Website
+    login(username: String, password: String): LoginResponse
+    loginTest(username: String): LoginResponse
   }
 `;
 

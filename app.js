@@ -1,17 +1,29 @@
+// Imports from node modules
 const { ApolloServer } = require('apollo-server');
 const cors = require('cors');
 const schedule = require('node-schedule');
-const opts = require('./utils/opts');
-const launchChromeAndRunLighthouse = require('./utils/lighthouseFetch');
-const processWebsites = require('./utils/processWebsites')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+// util(s) to get Lighthouse to run.
+const processWebsites = require('./utils/lighthouse/processWebsites');
+
+// database models from sequelize
 const db = require('./models');
+
+// schema and resolvers for apollo server
 const typeDefs = require('./data/schema');
 const resolvers = require('./data/resolvers');
-const desktopConfig = require('./utils/lr-desktop-config');
-const mobileConfig = require('./utils/lr-mobile-config');
-const baseConfig = require('./utils/baseConfig');
 
+// const seedUsers = require('./utils/auth/seedRegister');
+// seedUsers();
 
+// const { JSON_SECRET } = require('./.env.json');
+// const { SALT_ROUNDS } = require('./.env.json');
+
+// Server defined passing in schema, resovlers, db models,
+// and introspection/playground (only for dev, remove later)
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -19,6 +31,7 @@ const server = new ApolloServer({
   introspection: true,
   playground: true,
 });
+
 
 // const job = schedule.scheduleJob({ hour: 8, minute: 30, dayOfWeek: 2 }, async () => {
 //   db.Website.findAll()
@@ -29,7 +42,7 @@ const server = new ApolloServer({
 // });
 //
 // job.schedule();
-
+//
 // const testWebsites = [{ id: 1, url: 'https://www.google.com' }];
 // processWebsites(testWebsites).catch(error => console.log(error));
 
