@@ -54,7 +54,6 @@ const typeDefs = gql`
     createWebsite(name: String, url:String): Website
     runLighthouse(name: String): Website
     login(username: String, password: String): LoginResponse
-    loginTest(username: String): LoginResponse
   }
 `;
 

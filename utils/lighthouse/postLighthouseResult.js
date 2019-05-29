@@ -39,9 +39,7 @@ const postLighthouseResult = async (result, websiteId, method) => {
       estimated_input_latency: estimatedInputLatency,
     });
   } else {
-    const {
-      LHError: errorMessage,
-    } = result;
+    const { LHError } = result;
 
     await db.Stat.create({
       method,
@@ -58,7 +56,7 @@ const postLighthouseResult = async (result, websiteId, method) => {
       time_to_interactive: null,
       estimated_input_latency: null,
       error_code: 'LHError',
-      error_message: errorMessage,
+      error_message: LHError,
     });
   }
 };

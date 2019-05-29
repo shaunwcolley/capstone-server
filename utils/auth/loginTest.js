@@ -1,4 +1,11 @@
 const loginTest = () => {
-  return { success: false, message: 'Unable to generate token', error: null, token: null, userId: null };
+  return {
+    success: false,
+    message: 'Unable to generate token',
+    error: 'Tim is vulgar',
+    token: null,
+    userId: null,
+  };
 };
+
 module.exports = loginTest;
