@@ -6,6 +6,7 @@ const resolvers = {
     stats: (parent, args, { db }) => db.Stat.findAll({ include: [{ model: db.Website, as: 'website' }] }),
     websites: (parent, args, { db }) => db.Website.findAll(),
     getWebsite: (parent, { url }, { db }) => db.Website.findOne({ where: { url } }),
+    sortWebsite: (parent, args, { db }) => db.Stat.findAll({ include: [{ model: db.Website, as: 'website' }] }),
 
   },
   Mutation: {
