@@ -13,7 +13,7 @@ const processWebsites = async (array) => {
     // More accurate in the following: paints, speed index, performance, bestPractices and seo,
     // but still not as accurate as it should be for seo (BestPractices were off by 7 instead of 14)
     // Seo off by 19,
-    await launchChromeAndRunLighthouse(url, opts, baseConfig, id);
+    // await launchChromeAndRunLighthouse(url, opts, baseConfig, id);
  }
 };
 
