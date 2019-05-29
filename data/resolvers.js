@@ -45,8 +45,7 @@ const resolvers = {
       estimated_input_latency: estimatedInputLatency,
     }),
     runLighthouse: (parent, args, { db }) => db.Website.findAll().then((websites) => {
-      // processWebsites(websites).catch(error => console.log(error));
-      console.log(websites);
+      processWebsites(websites).catch(error => console.log(error));
     }),
   },
 };
