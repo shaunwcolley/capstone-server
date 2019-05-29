@@ -6,6 +6,7 @@ const resolvers = {
     users: (parent, args, { db }) => db.User.findAll(),
     stats: (parent, args, { db }) => db.Stat.findAll({ include: [{ model: db.Website, as: 'website' }] }),
     websites: (parent, args, { db }) => db.Website.findAll(),
+    sortWebsite: (parent, args, { db }) => db.Stat.findAll({ include: [{ model: db.Website, as: 'website' }] }),
   },
   Mutation: {
     createUser: (parent, { username, password }, { db }) => db.User.create({
