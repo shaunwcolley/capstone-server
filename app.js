@@ -44,6 +44,8 @@ const job = schedule.scheduleJob({ hour: 2, minute: 30, dayOfWeek: 4 }, async ()
 
 job.schedule();
 
+// const testWebsites = [{ id: 7, url: 'https://www.hellomonday.com' }];
+// processWebsites(testWebsites).catch(error => console.log(error));
 
 const PORT = process.env.PORT || 8080;
 
