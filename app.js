@@ -31,6 +31,8 @@ const server = new ApolloServer({
     const token = req.headers.authorization || '';
     return { db, user: authenticate(token) };
   },
+  introspection: true,
+  playground: true,
 });
 
 
