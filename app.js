@@ -16,6 +16,9 @@ const db = require('./models');
 const typeDefs = require('./data/schema');
 const resolvers = require('./data/resolvers');
 
+// Authenticate function
+const authenticate = require('./utils/auth/authenticate');
+
 // const seedUsers = require('./utils/auth/seedRegister');
 // seedUsers();
 
@@ -27,7 +30,10 @@ const resolvers = require('./data/resolvers');
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: { db },
+  context: ({ req }) => {
+    const token = req.headers.authorization || '';
+    return { db, user: authenticate(token) };
+  },
   introspection: true,
   playground: true,
 });
