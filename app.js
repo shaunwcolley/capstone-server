@@ -2,8 +2,6 @@
 const { ApolloServer } = require('apollo-server');
 const cors = require('cors');
 const schedule = require('node-schedule');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 // util(s) to get Lighthouse to run.
@@ -19,11 +17,10 @@ const resolvers = require('./data/resolvers');
 // Authenticate function
 const authenticate = require('./utils/auth/authenticate');
 
+// // Uncomment following code to create users in DB
 // const seedUsers = require('./utils/auth/seedRegister');
 // seedUsers();
 
-// const { JSON_SECRET } = require('./.env.json');
-// const { SALT_ROUNDS } = require('./.env.json');
 
 // Server defined passing in schema, resovlers, db models,
 // and introspection/playground (only for dev, remove later)
@@ -34,23 +31,18 @@ const server = new ApolloServer({
     const token = req.headers.authorization || '';
     return { db, user: authenticate(token) };
   },
-  introspection: true,
-  playground: true,
 });
 
 
-// const job = schedule.scheduleJob({ hour: 8, minute: 30, dayOfWeek: 2 }, async () => {
-//   db.Website.findAll()
-//     .then((websites) => {
-//       processWebsites(websites).catch(error => console.log(error));
-//     });
-//   console.log('LH process was fired, logging websites to db.');
-// });
-//
-// job.schedule();
-//
-// const testWebsites = [{ id: 1, url: 'https://www.google.com' }];
-// processWebsites(testWebsites).catch(error => console.log(error));
+const job = schedule.scheduleJob({ hour: 2, minute: 30, dayOfWeek: 4 }, async () => {
+  db.Website.findAll()
+    .then((websites) => {
+      processWebsites(websites).catch(error => console.log(error));
+    });
+  console.log('LH process was fired, logging websites to db.');
+});
+
+job.schedule();
 
 
 const PORT = process.env.PORT || 8080;
