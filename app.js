@@ -44,7 +44,9 @@ const job = schedule.scheduleJob({ hour: 2, minute: 30, dayOfWeek: 4 }, async ()
   console.log('LH process was fired, logging websites to db.');
 });
 
-job.schedule();
+// turning off schedule to prevent from overusing dynamos
+
+// job.schedule();
 
 // const testWebsites = [{ id: 7, url: 'https://www.hellomonday.com' }];
 // processWebsites(testWebsites).catch(error => console.log(error));
